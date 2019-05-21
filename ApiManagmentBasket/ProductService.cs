@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static ApiManagmentBasket.Product;
 
 namespace ApiManagmentBasket
 {
@@ -41,6 +42,22 @@ namespace ApiManagmentBasket
                 return tempBasket;
             }
         }
+
+        public bool CreateNewProduct(string name, decimal price, ProductCategoryId categoryid)
+        {
+            using (var context = new OrderManagmentDbContext())
+            {
+                var newProduct = new Product();
+                newProduct.Name = name;
+                newProduct.Price = price;
+                newProduct.Category = categoryid;
+                context.Add(newProduct);
+                context.SaveChanges();
+                return true;
+            }
+        }
+
+
     }
 }
 

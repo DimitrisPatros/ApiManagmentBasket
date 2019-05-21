@@ -25,8 +25,6 @@ namespace ApiManagmentBasket
             modelBuilder.Entity<Basket>();
             modelBuilder.Entity<Product>();
             modelBuilder.Entity<Customer>().HasIndex(u => u.Name).IsUnique();
-
-
         }
     }
 

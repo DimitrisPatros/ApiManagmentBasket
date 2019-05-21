@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using static ApiManagmentBasket.Product;
 
 namespace ApiManagmentBasket.Controllers
 {
@@ -64,6 +65,19 @@ namespace ApiManagmentBasket.Controllers
         public void DeleteBasket([FromBody] deleteBasketFromCustomer tempbakset)
         {
             manager.DeleteBasket(tempbakset.CustomerEmail,tempbakset.BasketId);
+        }
+        public struct newProduct
+        {
+            public string ProductName { get; set; }
+            public decimal Price { get; set; }
+            public ProductCategoryId Category { get; set; }
+        }
+        // create new product
+        [HttpPost("/NewProduct")]
+        public void Product([FromBody] newProduct product)
+        {
+            //var basket = basketManager.BasketSearch(tempbasket.BasketId);
+            basketManager.CreateNewProduct(product.ProductName,product.Price,product.Category);
         }
     }
 }
