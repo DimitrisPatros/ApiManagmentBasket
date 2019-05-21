@@ -11,48 +11,59 @@ namespace ApiManagmentBasket.Controllers
     public class ValuesController : ControllerBase
     {
         private CustomerService manager = new CustomerService();
+        private ProductService basketManager = new ProductService();
 
 
-        // GET api/values/5
+        // take the customers that have been regisret the last month
         [HttpGet("/recentCustomer")]
-        public List<Customer> Get()
+        public List<Customer> RecentCustomers()
         {
             return manager.GetRecentCustomers();
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string v1, string v2, string v3,DateTime v4)
+        // register new customer
+        [HttpPost("/register")]
+        public void Register([FromBody] Customer temp)
         {
-            manager.Register(v1,v2,v3,v4);
+            manager.Register(temp.Email,temp.Name,temp.Address,temp.Dob);
+        }
+        public struct addBasketToCustomer
+        {
+            public string CustomerEmail { get; set; }
+            public int BasketId { get; set; }
         }
 
-        //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>//
-
-        //// GET api/values
-        //[HttpGet]
-        //public ActionResult<IEnumerable<string>> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        // add basket to a customer
+        [HttpPost("/addBasket")]
+        public void AddBasket([FromBody] addBasketToCustomer tempbasket)
         {
-            return "value";
+            var basket =  basketManager.BasketSearch(tempbasket.BasketId);
+            manager.AddBasket(tempbasket.CustomerEmail,basket.BasketThatWeSearch);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // Update existing customer
+        [HttpPut("/update")]
+        public void Update([FromBody] Customer temp)
         {
+            manager.Update(temp.Email, temp.Name, temp.Address, temp.Dob, temp.IsActive);
+        }
+        // delete customer
+        [HttpPut("/delete")]
+        public void Delete([FromBody] string email)
+        {
+            manager.Delete(email);
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        public struct deleteBasketFromCustomer
         {
+            public string CustomerEmail { get; set; }
+            public int BasketId { get; set; }
+        }
+
+        [HttpDelete("/deleteBasket")]
+        public void DeleteBasket([FromBody] deleteBasketFromCustomer tempbakset)
+        {
+            manager.DeleteBasket(tempbakset.CustomerEmail,tempbakset.BasketId);
         }
     }
 }

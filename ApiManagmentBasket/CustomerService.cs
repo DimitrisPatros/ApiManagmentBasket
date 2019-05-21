@@ -7,6 +7,7 @@ namespace ApiManagmentBasket
 {
         class CustomerService : ICustomerService
         {
+            //done
             public bool AddBasket(string email, Basket basket)
             {
                 try
@@ -31,6 +32,7 @@ namespace ApiManagmentBasket
                 }
             }
 
+            //done
             public bool Delete(string email)
             {
                 try
@@ -58,6 +60,7 @@ namespace ApiManagmentBasket
 
             }
 
+            //done
             public bool DeleteBasket(string email, int basketId)
             {
                 try
@@ -82,6 +85,7 @@ namespace ApiManagmentBasket
                 }
             }
 
+            //done
             public List<Customer> GetRecentCustomers()
             {
 
@@ -98,6 +102,7 @@ namespace ApiManagmentBasket
 
             }
 
+            //done
             public bool Register(string email, string name, string address, DateTime birthDate)
             {
                 using (var context = new OrderManagmentDbContext())
@@ -109,6 +114,7 @@ namespace ApiManagmentBasket
                 }
             }
 
+            //done
             public bool Update(string email, string name, string address, DateTime birthDate, bool status)
             {
                 try

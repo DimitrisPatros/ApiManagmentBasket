@@ -25,6 +25,8 @@ namespace ApiManagmentBasket
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //afta gia to swager
+            services.AddSwaggerDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +36,10 @@ namespace ApiManagmentBasket
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //afta gia to swagger
+            app.UseSwagger();
+            app.UseSwaggerUi3();
 
             app.UseMvc();
         }

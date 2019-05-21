@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ApiManagmentBasket
 {
-    public class data
+    public class Data
     {
 
         //register new customers
