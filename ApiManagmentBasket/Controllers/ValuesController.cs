@@ -11,9 +11,8 @@ namespace ApiManagmentBasket.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private CustomerService manager = new CustomerService();
+        private ICustomerService manager = new CustomerService();
         private ProductService basketManager = new ProductService();
-
 
         // take the customers that have been regisret the last month
         [HttpGet("/recentCustomer")]

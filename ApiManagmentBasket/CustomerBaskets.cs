@@ -1,12 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ApiManagmentBasket
 {
-    public class Data
+    public class CustomerBaskets
     {
+        [ForeignKey("Basket")]
+        public int BasketId { get; set; }
+        [ForeignKey("Customer")]
+        [MaxLength(150)]
+        public string CustomerId { get; set; }
+        public Basket Basket { get; set; }
+        public Customer Customer { get; set; }
+
+
 
         //register new customers
         //var customer01 = service.Register("talou@hotmail.com", "toulk", "tade efi",new DateTime(1978, 5, 25));

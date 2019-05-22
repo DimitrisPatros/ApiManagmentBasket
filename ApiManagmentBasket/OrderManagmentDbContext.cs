@@ -11,6 +11,7 @@ namespace ApiManagmentBasket
         public DbSet<Product> Products { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<CustomerBaskets> CustomerBaskets { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -25,6 +26,7 @@ namespace ApiManagmentBasket
             modelBuilder.Entity<Basket>();
             modelBuilder.Entity<Product>();
             modelBuilder.Entity<Customer>().HasIndex(u => u.Name).IsUnique();
+            modelBuilder.Entity<CustomerBaskets>().HasKey(b => new { b.CustomerId, b.BasketId });
         }
     }
 
