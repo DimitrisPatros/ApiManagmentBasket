@@ -16,7 +16,7 @@ namespace ApiManagmentBasket
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseSqlServer(@"Server = localhost;Database=OrderManagment02; Trusted_Connection = True; ConnectRetryCount = 0;");
+                .UseSqlServer(@"Server = localhost;Database=ApiOrderManagment; Trusted_Connection = True; ConnectRetryCount = 0;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

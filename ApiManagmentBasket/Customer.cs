@@ -16,6 +16,7 @@ namespace ApiManagmentBasket
         public bool IsActive { get; set; }
         public DateTime Dob { get; set; }
         public DateTime RegisterDay { get; set; }
+        public List<CustomerBaskets> customerBaskets { get; set; }
 
         public Customer(string email, string name, string address, bool isActive, DateTime dob) //: this(email, name)
         {
@@ -25,6 +26,7 @@ namespace ApiManagmentBasket
             IsActive = isActive;
             Dob = dob;
             RegisterDay = DateTime.Today;
+            customerBaskets = new List<CustomerBaskets>();
         }
         //public Customer(string name, string email)
         //{
